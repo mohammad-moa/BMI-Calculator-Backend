@@ -14,8 +14,8 @@ export const dataSourceOptions: DataSourceOptions = {
   synchronize: false,
   logging: false,
   migrationsTableName: 'migrations',
-  entities: [join(__dirname, 'src', 'entities', '*.entity.{ts,js}')],
-  migrations: [join(__dirname, 'src', 'migrations', '*{.ts,.js}')],
+  entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+  migrations: [join(__dirname, 'migrations', '*{.ts,.js}')],
 };
 
 export const dataSourceConnection = new DataSource(dataSourceOptions);
