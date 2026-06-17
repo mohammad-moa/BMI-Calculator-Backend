@@ -1,23 +1,20 @@
-import {
-  API_ROUTES,
-  SWAGGER_ROUTES,
-} from '@constants/routes';
-import {
-  Logger,
-  ValidationPipe,
-} from '@nestjs/common';
+import { API_ROUTES, SWAGGER_ROUTES } from '@constants/routes';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import {
-  DocumentBuilder,
-  SwaggerModule,
-} from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix(API_ROUTES);
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
 
   // CORS
   app.enableCors({

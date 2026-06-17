@@ -1,9 +1,6 @@
 import * as dotenv from 'dotenv';
 import { join } from 'path';
-import {
-  DataSource,
-  DataSourceOptions,
-} from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
 
 dotenv.config();
 
@@ -14,7 +11,7 @@ export const dataSourceOptions: DataSourceOptions = {
   synchronize: false,
   logging: false,
   migrationsTableName: 'migrations',
-  entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+  entities: [join(__dirname, 'entities', '**', '*.entity.{ts,js}')],
   migrations: [join(__dirname, 'migrations', '*{.ts,.js}')],
 };
 
