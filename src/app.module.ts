@@ -1,18 +1,18 @@
+import { DatabaseModule } from '@database/database.module';
+import { BmiModule } from '@modules/bmi/bmi.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { dataSourceOptions } from './database/ormconfig';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    TypeOrmModule.forRoot(dataSourceOptions),
-    TypeOrmModule.forFeature(),
+    DatabaseModule,
+    BmiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
