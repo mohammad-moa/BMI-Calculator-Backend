@@ -5,4 +5,4 @@ export const SWAGGER_ROUTES = API_ROUTES + DOCS_ROUTES;
 export const BASE_ROUTES = API_ROUTES + DOCS_ROUTES;
 /* ----------------------------------- Bmi ---------------------------------- */
 export const BMI_ROUTES = '/bmi';
-export const BMI_HISTORY_ROUTES = 'bmi-history';
+export const BMI_HISTORY_ROUTES = '/history';

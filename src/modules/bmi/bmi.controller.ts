@@ -1,4 +1,4 @@
-import { BMI_ROUTES } from '@constants/routes';
+import { BMI_HISTORY_ROUTES, BMI_ROUTES } from '@constants/routes';
 import { Controller, Get } from '@nestjs/common';
 
 import { BmiService } from './bmi.service';
@@ -7,7 +7,7 @@ import { BmiService } from './bmi.service';
 export class BmiController {
   constructor(private readonly bmiService: BmiService) {}
 
-  @Get()
+  @Get(BMI_HISTORY_ROUTES)
   getHello(): string {
     return this.bmiService.get();
   }
