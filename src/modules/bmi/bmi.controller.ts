@@ -1,5 +1,8 @@
 import { BMI_ROUTES } from '@constants/routes';
-import { Controller, Get } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+} from '@nestjs/common';
 
 import { BmiService } from './bmi.service';
 
