@@ -1,8 +1,15 @@
 import { BMI_ROUTES } from '@constants/routes';
+import { BmiEntity } from '@database/entities';
+import { CalculateBmiRequestDto } from '@modules/shared/dtos';
 import {
+  Body,
   Controller,
-  Get,
+  Post,
 } from '@nestjs/common';
+import {
+  ApiOperation,
+  ApiResponse,
+} from '@nestjs/swagger';
 
 import { BmiService } from './bmi.service';
 
@@ -10,8 +17,14 @@ import { BmiService } from './bmi.service';
 export class BmiController {
   constructor(private readonly bmiService: BmiService) {}
 
-  @Get()
-  getHello(): string {
-    return this.bmiService.get();
+  @Post()
+  @ApiOperation({
+    description: 'Calculate Bmi',
+  })
+  @ApiResponse({
+    status: 200,
+  })
+  async create(@Body() body: CalculateBmiRequestDto): Promise<BmiEntity> {
+    return this.bmiService.create(body);
   }
 }
