@@ -1,3 +1,4 @@
+import { CurrentUserId } from '@common/decorators';
 import { BMI_ROUTES } from '@constants/routes';
 import { BmiEntity } from '@database/entities';
 import { CalculateBmiRequestDto } from '@modules/shared/dtos';
@@ -24,7 +25,10 @@ export class BmiController {
   @ApiResponse({
     status: 200,
   })
-  async create(@Body() body: CalculateBmiRequestDto): Promise<BmiEntity> {
-    return this.bmiService.create(body);
+  async create(
+    @Body() body: CalculateBmiRequestDto,
+    @CurrentUserId() userId: string,
+  ): Promise<BmiEntity> {
+    return this.bmiService.create(body, userId);
   }
 }

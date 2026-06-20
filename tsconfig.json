@@ -10,6 +10,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "paths": {
+      "@common/*": ["./src/common/*"],
       "@database/*": ["./src/database/*"],
       "@modules/*": ["./src/modules/*"],
       "@constants/*": ["./src/modules/shared/constants/*"],
