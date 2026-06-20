@@ -1,7 +1,6 @@
 import {
   Column,
   Entity,
-  Index,
 } from 'typeorm';
 
 import {
@@ -77,10 +76,6 @@ export class BmiEntity extends AbstractEntity {
   })
   status?: BmiStatusEnum;
 
-  @Index()
-  @Column({ name: 'guest_id', type: 'uuid' })
-  guestId: string;
-
-  @Column({ name: 'user_id', type: 'uuid', nullable: true })
-  userId?: string;
+  @Column({ name: 'user_id', type: 'uuid' })
+  userId: string;
 }

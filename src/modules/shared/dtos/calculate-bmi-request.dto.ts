@@ -1,7 +1,7 @@
 import {
   IsEnum,
   IsNotEmpty,
-  IsString,
+  IsNumber,
 } from 'class-validator';
 
 import {
@@ -15,11 +15,11 @@ export class CalculateBmiRequestDto {
   @IsNotEmpty()
   gender: GenderEnum;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
   age: number;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
   weight: number;
 
@@ -27,7 +27,7 @@ export class CalculateBmiRequestDto {
   @IsNotEmpty()
   weightUnit: WeightEnum;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
   height: number;
 

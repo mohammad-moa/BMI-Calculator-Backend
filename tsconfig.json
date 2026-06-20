@@ -16,7 +16,9 @@
       "@dtos": ["./src/modules/shared/dtos/index.ts"],
       "@dtos/*": ["./src/modules/shared/dtos/*"],
       "@enums": ["./src/modules/shared/enums/index.ts"],
-      "@enums/*": ["./src/modules/shared/enums/*"]
+      "@enums/*": ["./src/modules/shared/enums/*"],
+      "@utils": ["./src/modules/shared/utils/index.ts"],
+      "@utils/*": ["./src/modules/shared/utils/*"]
     },
     "incremental": true,
     "skipLibCheck": true,
