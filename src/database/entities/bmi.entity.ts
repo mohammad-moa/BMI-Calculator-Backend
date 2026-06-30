@@ -56,6 +56,9 @@ export class BmiEntity extends AbstractEntity {
   })
   heightUnit: HeightEnum;
 
+  @Column({ name: 'notes', type: 'text', nullable: true })
+  notes?: string;
+
   @Column({
     name: 'bmi',
     type: 'float',

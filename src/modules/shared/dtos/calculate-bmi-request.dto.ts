@@ -2,6 +2,8 @@ import {
   IsEnum,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
+  IsString,
 } from 'class-validator';
 
 import {
@@ -34,4 +36,8 @@ export class CalculateBmiRequestDto {
   @IsEnum(HeightEnum)
   @IsNotEmpty()
   heightUnit: HeightEnum;
+
+  @IsString()
+  @IsOptional()
+  notes?: string;
 }
