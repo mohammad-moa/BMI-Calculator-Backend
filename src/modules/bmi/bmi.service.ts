@@ -5,6 +5,7 @@ import { CalculateBmiRequestDto } from '@modules/shared/dtos';
 import {
   convertHeightToCentimeter,
   convertWeightToKilogram,
+  pagination,
 } from '@modules/shared/utils';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -36,5 +37,13 @@ export class BmiService {
       userId,
     });
     return await this.bmiRepository.save(createCalculateBmi);
+  }
+
+  async findHistories(userId: string) {
+    const queryBuilder = this.bmiRepository
+      .createQueryBuilder('bmi')
+      .where('bmi.userId = :userId', { userId });
+
+    return await pagination(queryBuilder);
   }
 }

@@ -1,7 +1,16 @@
-import { API_ROUTES, SWAGGER_ROUTES } from '@constants/routes';
-import { Logger, ValidationPipe } from '@nestjs/common';
+import {
+  API_ROUTES,
+  SWAGGER_ROUTES,
+} from '@constants/routes';
+import {
+  Logger,
+  ValidationPipe,
+} from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import {
+  DocumentBuilder,
+  SwaggerModule,
+} from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 
@@ -29,6 +38,13 @@ async function bootstrap() {
     .setDescription('Api For BMI Calculator')
     .setVersion('1.0.0')
     .addBearerAuth()
+    .addApiKey(
+      {
+        type: 'apiKey',
+        name: 'x-guest-id',
+      },
+      'X-Guest-ID',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup(SWAGGER_ROUTES, app, document, {
