@@ -1,7 +1,10 @@
 import { Repository } from 'typeorm';
 
 import { BmiEntity } from '@database/entities';
-import { CalculateBmiRequestDto } from '@modules/shared/dtos';
+import {
+  CalculateBmiRequestDto,
+  GetBmiHistoryListRequestDto,
+} from '@modules/shared/dtos';
 import {
   convertHeightToCentimeter,
   convertWeightToKilogram,
@@ -39,11 +42,19 @@ export class BmiService {
     return await this.bmiRepository.save(createCalculateBmi);
   }
 
-  async findHistories(userId: string) {
+  async findHistories(query: GetBmiHistoryListRequestDto, userId: string) {
+    const { page = 1, limit = 10, search } = query;
+
     const queryBuilder = this.bmiRepository
       .createQueryBuilder('bmi')
       .where('bmi.userId = :userId', { userId });
 
-    return await pagination(queryBuilder);
+    if (search) {
+      queryBuilder.andWhere('bmi.notes ILIKE :search', {
+        search: `%${search}%`,
+      });
+    }
+
+    return await pagination(queryBuilder, page, limit);
   }
 }

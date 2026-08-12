@@ -1,21 +1,12 @@
 import { CurrentUserId } from '@common/decorators';
-import {
-  BMI_HISTORY_ROUTES,
-  BMI_ROUTES,
-} from '@constants/routes';
+import { BMI_HISTORY_ROUTES, BMI_ROUTES } from '@constants/routes';
 import { BmiEntity } from '@database/entities';
-import { CalculateBmiRequestDto } from '@modules/shared/dtos';
 import {
-  Body,
-  Controller,
-  Get,
-  Post,
-} from '@nestjs/common';
-import {
-  ApiOperation,
-  ApiResponse,
-  ApiSecurity,
-} from '@nestjs/swagger';
+  CalculateBmiRequestDto,
+  GetBmiHistoryListRequestDto,
+} from '@modules/shared/dtos';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiSecurity } from '@nestjs/swagger';
 
 import { BmiService } from './bmi.service';
 
@@ -42,7 +33,10 @@ export class BmiController {
   @ApiOperation({
     description: 'Get History Bmi',
   })
-  async getHistories(@CurrentUserId() userId: string) {
-    return this.bmiService.findHistories(userId);
+  async getHistories(
+    @Query() query: GetBmiHistoryListRequestDto,
+    @CurrentUserId() userId: string,
+  ) {
+    return this.bmiService.findHistories(query, userId);
   }
 }
