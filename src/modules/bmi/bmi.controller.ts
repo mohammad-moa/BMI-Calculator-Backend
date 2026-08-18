@@ -33,6 +33,9 @@ export class BmiController {
   @ApiOperation({
     description: 'Get History Bmi',
   })
+  @ApiResponse({
+    status: 200,
+  })
   async getHistories(
     @Query() query: GetBmiHistoryListRequestDto,
     @CurrentUserId() userId: string,
