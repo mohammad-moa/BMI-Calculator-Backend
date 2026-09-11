@@ -1,4 +1,4 @@
-import { IsEnum, IsIn, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { AbstractBaseRequestDto } from './abstract-base-request.dto';
 import { BmiStatusEnum } from '../enums';
 
