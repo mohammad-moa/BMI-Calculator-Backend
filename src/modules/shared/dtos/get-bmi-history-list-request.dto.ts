@@ -10,8 +10,4 @@ export class GetBmiHistoryListRequestDto extends AbstractBaseRequestDto {
   @IsEnum(BmiStatusEnum)
   @IsOptional()
   status?: BmiStatusEnum;
-
-  @IsIn(['list', 'grid'])
-  @IsOptional()
-  layout?: 'list' | 'grid';
 }

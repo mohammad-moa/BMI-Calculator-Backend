@@ -43,7 +43,7 @@ export class BmiService {
   }
 
   async findHistories(query: GetBmiHistoryListRequestDto, userId: string) {
-    const { page = 1, limit = 10, search } = query;
+    const { page = 1, limit = 10, search, status } = query;
 
     const queryBuilder = this.bmiRepository
       .createQueryBuilder('bmi')
@@ -53,6 +53,10 @@ export class BmiService {
       queryBuilder.andWhere('bmi.notes ILIKE :search', {
         search: `%${search}%`,
       });
+    }
+
+    if (status) {
+      queryBuilder.andWhere('bmi.status = :status', { status });
     }
 
     return await pagination(queryBuilder, page, limit);
